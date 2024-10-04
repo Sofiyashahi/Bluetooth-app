@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BluetoothApp</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="info">Connect to accessories you can use for activitites such as streaming music, making phone calls and gaming.</string>
+    <string name="setting_info">This iPhone is discoverable as iPhone while Bluetooth Settings is open</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
