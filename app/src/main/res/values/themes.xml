@@ -7,9 +7,4 @@
 
     <style name="Theme.BluetoothApp" parent="Base.Theme.BluetoothApp" />
 
-    <style name="BrandedSwitch.control" parent="Theme.AppCompat.Light">
-        <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">@color/green</item>
-        <item name="colorSwitchThumbNormal">@color/green</item>
-    </style>
 </resources>

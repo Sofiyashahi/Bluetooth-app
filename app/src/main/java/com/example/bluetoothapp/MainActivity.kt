@@ -338,6 +338,7 @@ class MainActivity : AppCompatActivity(), DeviceItemListener {
         scanner?.stopScan(scanCallback)
     }
 
+    //When connecting to the BLE device this callback is used
     private val callback = object : BluetoothGattCallback() {
         @SuppressLint("MissingPermission")
         override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
@@ -345,10 +346,12 @@ class MainActivity : AppCompatActivity(), DeviceItemListener {
 
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 Log.d(TAG, "onConnectionStateChange: ble device is not connected successfully")
+                connectedStatus = false
                 return
             }
 
             if (newState == BluetoothGatt.STATE_CONNECTED) {
+                connectedStatus = true
                 Log.d(TAG, "onConnectionStateChange: device connected")
                 Log.d(TAG, "onConnectionStateChange: ${gatt?.device}")
                 Log.d(
@@ -448,12 +451,14 @@ class MainActivity : AppCompatActivity(), DeviceItemListener {
         var c = ""
         var d = ""
 
+        //for getting the services of ble
         val servicesList = bluetoothGatt.services
         for (i in servicesList.indices) {
             val bluetoothGattService = servicesList[i]
             s = bluetoothGattService.uuid.toString()
             Log.d(TAG, s)
 
+            //for getting the characteristic from services
             val bluetoothGattCharacteristicList = bluetoothGattService.characteristics
 
             for (bluetoothGattCharacteristic in bluetoothGattCharacteristicList) {
@@ -474,6 +479,7 @@ class MainActivity : AppCompatActivity(), DeviceItemListener {
 
     companion object {
         var gatt: BluetoothGatt? = null
+        var connectedStatus = false
         var services: List<BluetoothGattService> = emptyList()
     }
 

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bluetoothapp.R
@@ -16,6 +17,7 @@ class DeviceListAdapter(private val deviceList: ArrayList<DeviceModel>, private 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val tvDeviceName: TextView = itemView.findViewById(R.id.tvDeviceName)
         val tvConnectedStatus: TextView = itemView.findViewById(R.id.tvConnectedStatus)
+        val pairedDevice: LinearLayout = itemView.findViewById(R.id.LLPairedDevice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,13 +34,15 @@ class DeviceListAdapter(private val deviceList: ArrayList<DeviceModel>, private 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val deviceItems = deviceList[position]
         holder.tvDeviceName.text = deviceItems.device.name
-        if(deviceItems.status){
-            holder.tvConnectedStatus.text = "Connected"
+
+        val connectedStatus = deviceItems.device.bondState
+        if(connectedStatus == 12){
+            holder.tvConnectedStatus.text = "Paired"
         } else {
             holder.tvConnectedStatus.text = "Not Connected"
         }
 
-        holder.tvDeviceName.setOnClickListener {
+        holder.pairedDevice.setOnClickListener {
             deviceItemListener.onDeviceItemClick(deviceItems.device)
             Log.d("DeviceListAdapter", "onBindViewHolder: device clicked")
         }
