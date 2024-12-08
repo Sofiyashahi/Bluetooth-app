@@ -18,7 +18,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.icu.text.Transliterator.Position
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +33,6 @@ import com.example.bluetoothapp.activity.DeviceActivity
 import com.example.bluetoothapp.adapter.AvailableDeviceAdapter
 import com.example.bluetoothapp.adapter.DeviceListAdapter
 import com.example.bluetoothapp.databinding.ActivityMainBinding
-import com.example.bluetoothapp.fragments.DeviceFragment
 import com.example.bluetoothapp.interfaces.DeviceItemListener
 import com.example.bluetoothapp.model.DeviceModel
 
